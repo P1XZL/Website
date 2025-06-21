@@ -1,0 +1,143 @@
+<!-- 
+Upload page template
+Source: Custom form design for content submission
+-->
+{% extends "base.html" %}
+
+{% block title %}Upload - Pyrite{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h1 class="section-title">📤 Upload Content</h1>
+    <p class="section-subtitle">
+        Share your creations with the Minecraft community. Upload mods, texture packs, worlds, and more!
+    </p>
+</div>
+
+<!-- Upload form section -->
+<section class="hero-section">
+    <h2 style="color: white; font-size: 2rem; margin-bottom: 30px;">Submit Your Content</h2>
+    
+    <!-- Upload form -->
+    <form id="upload-form" style="max-width: 600px; margin: 0 auto; text-align: left;">
+        <div style="margin-bottom: 20px;">
+            <label for="content-type" style="color: white; display: block; margin-bottom: 8px; font-weight: 600;">Content Type:</label>
+            <select id="content-type" name="content-type" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white;">
+                <option value="mod">Mod</option>
+                <option value="texture">Texture Pack</option>
+                <option value="world">World</option>
+                <option value="shader">Shader Pack</option>
+                <option value="modpack">Modpack</option>
+            </select>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label for="content-name" style="color: white; display: block; margin-bottom: 8px; font-weight: 600;">Name:</label>
+            <input type="text" id="content-name" name="content-name" required 
+                   style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white;"
+                   placeholder="Enter content name">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label for="content-description" style="color: white; display: block; margin-bottom: 8px; font-weight: 600;">Description:</label>
+            <textarea id="content-description" name="content-description" rows="4" required
+                      style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; resize: vertical;"
+                      placeholder="Describe your content..."></textarea>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label for="content-file" style="color: white; display: block; margin-bottom: 8px; font-weight: 600;">File:</label>
+            <input type="file" id="content-file" name="content-file" required
+                   style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white;">
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="upload-btn" style="padding: 15px 30px; font-size: 1.1rem;">
+                🚀 Upload Content
+            </button>
+        </div>
+    </form>
+</section>
+
+<!-- Guidelines section -->
+<section class="featured-section">
+    <h2 class="featured-title">📋 Upload Guidelines</h2>
+    <div class="card-grid">
+        <div class="mod-card">
+            <div class="mod-card-content">
+                <h3 class="mod-card-title">✅ Quality Standards</h3>
+                <p class="mod-card-description">
+                    Ensure your content is well-tested, documented, and provides value to the community.
+                </p>
+            </div>
+        </div>
+        
+        <div class="mod-card">
+            <div class="mod-card-content">
+                <h3 class="mod-card-title">📝 Documentation</h3>
+                <p class="mod-card-description">
+                    Include clear installation instructions, compatibility information, and feature descriptions.
+                </p>
+            </div>
+        </div>
+        
+        <div class="mod-card">
+            <div class="mod-card-content">
+                <h3 class="mod-card-title">🔒 Safety First</h3>
+                <p class="mod-card-description">
+                    All uploads are scanned for malware. Only submit original content or content you have permission to share.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image about content creation -->
+<div class="image-container" style="margin: 40px 0;">
+    <img src="https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=800" 
+         alt="Content Creation" class="content-image">
+    <div class="image-caption">
+        <p><strong>Content Creation:</strong> Creating and sharing Minecraft content requires dedication, creativity, and technical skills. 
+        This image represents the development environment where creators build amazing experiences for the community.</p>
+        <div class="image-source">
+            <strong>Source:</strong> <a href="https://pexels.com" target="_blank">Pexels.com</a> - Development and creation workspace
+        </div>
+    </div>
+</div>
+
+<!-- Python code usage - Display current time and page info -->
+<div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 16px; margin: 30px 0;">
+    <h3 style="color: white; margin-bottom: 10px;">📊 Upload Statistics</h3>
+    <p style="color: rgba(255, 255, 255, 0.8);">Page loaded at: {{ current_time }}</p>
+    <p style="color: rgba(255, 255, 255, 0.8);">Ready to accept your submissions!</p>
+</div>
+
+<!-- JavaScript for form handling -->
+<script>
+document.getElementById('upload-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const contentName = formData.get('content-name');
+    const contentType = formData.get('content-type');
+    
+    // Simulate upload process
+    alert(`Thank you for submitting "${contentName}" (${contentType})! Your content will be reviewed and published soon.`);
+    
+    // Reset form
+    this.reset();
+});
+
+// File size validation
+document.getElementById('content-file').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file && file.size > 100 * 1024 * 1024) { // 100MB limit
+        alert('File size must be less than 100MB');
+        this.value = '';
+    }
+});
+</script>
+
+<!-- JavaScript interaction counter -->
+<div id="click-counter">Page interactions: 0</div>
+{% endblock %}

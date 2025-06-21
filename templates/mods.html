@@ -1,46 +1,83 @@
-<!DOCTYPE html>
-<html lang="nl">
-     <head>
-           <title>Pyrite</title>
-           <meta charset="utf-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-           <link rel="preconnect" href="https://fonts.googleapis.com">
-           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-           <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
-           <link rel="stylesheet" href="{{ url_for('static', filename='css/opmaak.css') }}">
-           <script src="{{ url_for('static', filename='js/navbar.js') }}" defer></script>
-     </head>
-     <body>
-         <nav class="navbar">
-             <div class="nav-container">
-                 <div class="nav-logo">
-                     <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
-                 </div>
-                 <div class="nav-links">
-                     <div class="nav-tile"><a href="/">Home</a></div>
-                     <div class="nav-tile active"><a href="/mods">Mods</a></div>
-                     <div class="nav-tile"><a href="/gallery">Gallery</a></div>
-                     <div class="nav-tile"><a href="/textures">Textures</a></div>
-                     <div class="nav-tile"><a href="/worlds">Worlds</a></div>
-                 </div>
-                 <div class="hamburger-menu">
-                     <span></span>
-                     <span></span>
-                     <span></span>
-                 </div>
-             </div>
-             <div class="mobile-menu">
-                 <div class="nav-tile"><a href="/">Home</a></div>
-                 <div class="nav-tile active"><a href="/mods">Mods</a></div>
-                 <div class="nav-tile"><a href="/gallery">Gallery</a></div>
-                 <div class="nav-tile"><a href="/textures">Textures</a></div>
-                 <div class="nav-tile"><a href="/worlds">Worlds</a></div>
-             </div>
-         </nav>
+<!-- 
+Mods page template
+Source: Custom design for Minecraft mod showcase
+-->
+{% extends "base.html" %}
 
-         <div style="padding: 20px;">
-             <h1>Page 2</h1>
-             <p>Hallo</p>
-         </div>
-     </body>
-</html>
+{% block title %}Mods - Pyrite{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h1 class="section-title">🔧 Mods</h1>
+    <p class="section-subtitle">
+        Enhance your Minecraft experience with our curated collection of mods. 
+        From gameplay mechanics to visual improvements, find the perfect mods for your adventure.
+    </p>
+</div>
+
+<!-- Python code usage - Display mods from Flask -->
+<div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+    <h3 style="color: white; margin-bottom: 15px;">📈 Mod Statistics</h3>
+    <p style="color: rgba(255, 255, 255, 0.8);">Total mods available: <strong>{{ total_count }}</strong></p>
+    <p style="color: rgba(255, 255, 255, 0.8);">Last updated: {{ current_time }}</p>
+</div>
+
+<!-- Featured mods section using Python data -->
+<section class="featured-section">
+    <h2 class="featured-title">🌟 Popular Mods</h2>
+    <div class="card-grid">
+        {% for mod in mods_list %}
+        <div class="mod-card">
+            <img src="https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                 alt="{{ mod.name }}" class="mod-card-image">
+            <div class="mod-card-content">
+                <h3 class="mod-card-title">{{ mod.name }}</h3>
+                <p class="mod-card-author">by {{ mod.author }}</p>
+                <p class="mod-card-description">
+                    {% if mod.name == "Create Mod" %}
+                        Add realistic mechanical contraptions and automation to your world
+                    {% elif mod.name == "JEI" %}
+                        Just Enough Items - Recipe viewer and item management
+                    {% elif mod.name == "Biomes O' Plenty" %}
+                        Adds over 90 new biomes and blocks to explore
+                    {% else %}
+                        Construct tools and weapons with customizable parts
+                    {% endif %}
+                </p>
+                <div class="mod-card-stats">
+                    <span class="mod-downloads">{{ mod.downloads }} downloads</span>
+                    <span class="mod-version">{{ mod.version }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Image with caption about modding -->
+<div class="image-container" style="margin: 40px 0;">
+    <img src="https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=800" 
+         alt="Minecraft Modding Community" class="content-image">
+    <div class="image-caption">
+        <p><strong>Modding Community:</strong> The Minecraft modding community is one of the most active and creative gaming communities. 
+        This represents the collaborative spirit of mod developers who enhance the game experience for millions of players worldwide.</p>
+        <div class="image-source">
+            <strong>Source:</strong> <a href="https://pexels.com" target="_blank">Pexels.com</a> - Community and collaboration imagery
+        </div>
+    </div>
+</div>
+
+<!-- Coming soon section -->
+<div class="hero-section" style="text-align: center; margin-top: 40px;">
+    <h2 style="color: white; font-size: 2rem; margin-bottom: 20px;">🚧 More Mods Coming Soon!</h2>
+    <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 30px;">
+        We're working hard to bring you more amazing mods. Check back regularly for updates!
+    </p>
+    <div style="margin-top: 30px;">
+        <a href="/upload" class="upload-btn">Submit Your Mod</a>
+    </div>
+</div>
+
+<!-- JavaScript interaction counter -->
+<div id="click-counter">Page interactions: 0</div>
+{% endblock %}

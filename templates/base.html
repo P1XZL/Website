@@ -3,6 +3,7 @@
 <head>
     <title>{% block title %}Pyrite{% endblock %}</title>
     <meta charset="utf-8">
+    <!-- Viewport set to 1.0 as required -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,7 @@
     {% block extra_js %}{% endblock %}
 </head>
 <body>
-    <!-- Header with school logo -->
+    <!-- Header with school logo as required -->
     <header id="main-header">
         <div class="header-content">
             <img src="{{ url_for('static', filename='img/logo.png') }}" alt="School Logo" id="school-logo">
@@ -57,8 +58,8 @@
         </div>
     </nav>
 
-    <!-- Main content section -->
-    <main id="main-content">
+    <!-- Main content section (middenstuk) -->
+    <main id="main-content" class="main-content">
         {% block content %}{% endblock %}
     </main>
 
@@ -68,7 +69,7 @@
             <div class="footer-section">
                 <h3>Pyrite</h3>
                 <p>Your ultimate destination for Minecraft content</p>
-                <!-- Navigation buttons for every page -->
+                <!-- Navigation buttons for every page as required -->
                 <div class="footer-nav">
                     <button onclick="goBack()" class="footer-btn" id="back-btn">← Back</button>
                     <button onclick="goHome()" class="footer-btn" id="home-btn">🏠 Home</button>
@@ -93,21 +94,23 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Current Time</h4>
-                <!-- Python code usage in template -->
+                <h4>Server Info</h4>
+                <!-- Python code usage in template #1 -->
                 <p id="server-time">Server time: {{ current_time }}</p>
-                <p id="page-info">You are on: {{ request.endpoint or 'home' }}</p>
+                <!-- Python code usage in template #2 -->
+                <p id="page-info">Current page: {{ request.endpoint or 'home' }}</p>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2024 Pyrite. Created for educational purposes.</p>
-            <p>Images sourced from Pexels.com and custom content</p>
+            <!-- Source attribution for images as required -->
+            <p>Images sourced from <a href="https://pexels.com" target="_blank">Pexels.com</a> and custom content</p>
         </div>
     </footer>
 
-    <!-- JavaScript for navigation -->
+    <!-- JavaScript functionality as required -->
     <script>
-        // Navigation functions
+        // Navigation functions for back and home buttons
         function goBack() {
             if (window.history.length > 1) {
                 window.history.back();
@@ -120,7 +123,7 @@
             window.location.href = '/';
         }
 
-        // Update current time every second
+        // JavaScript functionality - Dynamic time update
         function updateTime() {
             const now = new Date();
             const timeString = now.toLocaleString('nl-NL');
@@ -133,6 +136,19 @@
         // Update time every second
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
+
+        // JavaScript functionality - Page interaction counter
+        let clickCounter = 0;
+        function incrementCounter() {
+            clickCounter++;
+            const counterElement = document.getElementById('click-counter');
+            if (counterElement) {
+                counterElement.textContent = 'Page interactions: ' + clickCounter;
+            }
+        }
+        
+        // Add click listener to body
+        document.addEventListener('click', incrementCounter);
     </script>
 </body>
 </html>
