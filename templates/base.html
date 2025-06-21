@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <title>{% block title %}Pyrite{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/opmaak.css') }}">
+    {% block extra_css %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/navbar.js') }}" defer></script>
+    {% block extra_js %}{% endblock %}
+</head>
+<body>
+    <!-- Header with school logo -->
+    <header id="main-header">
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="School Logo" id="school-logo">
+            <h1>Pyrite - Minecraft Content Hub</h1>
+        </div>
+    </header>
+
+    <!-- Navigation bar -->
+    <nav class="navbar" id="main-navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            </div>
+            <div class="nav-links">
+                <div class="nav-tile {% if request.endpoint == 'index' %}active{% endif %}"><a href="/">Home</a></div>
+                <div class="nav-tile {% if request.endpoint == 'mods' %}active{% endif %}"><a href="/mods">Mods</a></div>
+                <div class="nav-tile {% if request.endpoint == 'gallery' %}active{% endif %}"><a href="/gallery">Gallery</a></div>
+                <div class="nav-tile {% if request.endpoint == 'textures' %}active{% endif %}"><a href="/textures">Textures</a></div>
+                <div class="nav-tile {% if request.endpoint == 'worlds' %}active{% endif %}"><a href="/worlds">Worlds</a></div>
+                <div class="nav-tile {% if request.endpoint == 'shaders' %}active{% endif %}"><a href="/shaders">Shaders</a></div>
+                <div class="nav-tile {% if request.endpoint == 'modpacks' %}active{% endif %}"><a href="/modpacks">Modpacks</a></div>
+                <div class="nav-tile {% if request.endpoint == 'guides' %}active{% endif %}"><a href="/guides">Guides</a></div>
+                <div class="nav-tile {% if request.endpoint == 'upload' %}active{% endif %}"><a href="/upload">Upload</a></div>
+            </div>
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <div class="nav-tile {% if request.endpoint == 'index' %}active{% endif %}"><a href="/">Home</a></div>
+            <div class="nav-tile {% if request.endpoint == 'mods' %}active{% endif %}"><a href="/mods">Mods</a></div>
+            <div class="nav-tile {% if request.endpoint == 'gallery' %}active{% endif %}"><a href="/gallery">Gallery</a></div>
+            <div class="nav-tile {% if request.endpoint == 'textures' %}active{% endif %}"><a href="/textures">Textures</a></div>
+            <div class="nav-tile {% if request.endpoint == 'worlds' %}active{% endif %}"><a href="/worlds">Worlds</a></div>
+            <div class="nav-tile {% if request.endpoint == 'shaders' %}active{% endif %}"><a href="/shaders">Shaders</a></div>
+            <div class="nav-tile {% if request.endpoint == 'modpacks' %}active{% endif %}"><a href="/modpacks">Modpacks</a></div>
+            <div class="nav-tile {% if request.endpoint == 'guides' %}active{% endif %}"><a href="/guides">Guides</a></div>
+            <div class="nav-tile {% if request.endpoint == 'upload' %}active{% endif %}"><a href="/upload">Upload</a></div>
+        </div>
+    </nav>
+
+    <!-- Main content section -->
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Pyrite</h3>
+                <p>Your ultimate destination for Minecraft content</p>
+                <!-- Navigation buttons for every page -->
+                <div class="footer-nav">
+                    <button onclick="goBack()" class="footer-btn" id="back-btn">← Back</button>
+                    <button onclick="goHome()" class="footer-btn" id="home-btn">🏠 Home</button>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/mods">Mods</a></li>
+                    <li><a href="/gallery">Gallery</a></li>
+                    <li><a href="/textures">Texture Packs</a></li>
+                    <li><a href="/worlds">Worlds</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/shaders">Shaders</a></li>
+                    <li><a href="/modpacks">Modpacks</a></li>
+                    <li><a href="/guides">Guides</a></li>
+                    <li><a href="/upload">Upload Content</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Current Time</h4>
+                <!-- Python code usage in template -->
+                <p id="server-time">Server time: {{ current_time }}</p>
+                <p id="page-info">You are on: {{ request.endpoint or 'home' }}</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pyrite. Created for educational purposes.</p>
+            <p>Images sourced from Pexels.com and custom content</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for navigation -->
+    <script>
+        // Navigation functions
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+        
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        // Update current time every second
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('nl-NL');
+            const timeElement = document.getElementById('server-time');
+            if (timeElement) {
+                timeElement.innerHTML = 'Current time: ' + timeString;
+            }
+        }
+        
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call
+    </script>
+</body>
+</html>
