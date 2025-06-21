@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl">
+     <head>
+           <title>Pyrite</title>
+           <meta charset="utf-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <link rel="preconnect" href="https://fonts.googleapis.com">
+           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+           <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+           <link rel="stylesheet" href="{{ url_for('static', filename='css/opmaak.css') }}">
+           <script src="{{ url_for('static', filename='js/navbar.js') }}" defer></script>
+         
+     </head>
+     <body>
+         <!-- Navigation bar -->
+         <nav class="navbar">
+             <div class="nav-container">
+                 <div class="nav-logo">
+                     <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+                 </div>
+                 <div class="nav-links">
+                     <div class="nav-tile active"><a href="/">Home</a></div>
+                     <div class="nav-tile"><a href="/mods">Mods</a></div>
+                     <div class="nav-tile"><a href="/gallery">Gallery</a></div>
+                     <div class="nav-tile"><a href="/textures">Textures</a></div>
+                     <div class="nav-tile"><a href="/worlds">Worlds</a></div>
+                 </div>
+                 <div class="hamburger-menu">
+                     <span></span>
+                     <span></span>
+                     <span></span>
+                 </div>
+             </div>
+             <div class="mobile-menu">
+                 <div class="nav-tile active"><a href="/">Home</a></div>
+                 <div class="nav-tile"><a href="/mods">Mods</a></div>
+                 <div class="nav-tile"><a href="/gallery">Gallery</a></div>
+                 <div class="nav-tile"><a href="/textures">Textures</a></div>
+                 <div class="nav-tile"><a href="/worlds">Worlds</a></div>
+             </div>
+         </nav>
+     </body>
+
+    <div class="main-content">
+        <!-- Top card -->
+        <section class="hero-section">
+            <h1 class="hero-title">Welcome!</h1>
+            <p class="hero-subtitle">
+                Discover, download, and share the best Minecraft content. From game-changing mods to stunning texture packs, 
+                beautiful worlds to performance-boosting shaders - everything you need to enhance your Minecraft experience.
+            </p>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="/mods" class="upload-btn">Explore!</a>
+            </div>
+        </section>
+        <!-- Categories -->
+
+<!-- Mods -->
+            <p class="devider-title">Explore our website</h3>
+        <section class="featured-section">
+            <div class="card-grid">
+                <div class="mod-card">
+                    <img src="{{ url_for('static', filename='img/create.png') }}" alt="Mods" class="mod-card-image">
+                    <div class="mod-card-content">
+                        <h3 class="mod-card-title">Mods</h3>
+                        <p class="mod-card-description">Enhance your gameplay with thousands of community-created modifications</p>
+                        <div style="margin-top: 16px;">
+                            <a href="/mods" class="filter-btn">Browse Mods</a>
+                        </div>
+                    </div>
+                </div>
+<!-- Texture packs -->
+                <div class="mod-card">
+                    <img src="{{ url_for('static', filename='img/texturepacks.png') }}" alt="Texture Packs" class="mod-card-image">
+                    <div class="mod-card-content">
+                        <h3 class="mod-card-title">Texture Packs</h3>
+                        <p class="mod-card-description">Transform your world's appearance with beautiful texture packs</p>
+                        <div style="margin-top: 16px;">
+                            <a href="/textures" class="filter-btn">Browse Textures</a>
+                        </div>
+                    </div>
+                </div>
+<!-- Worlds tile -->
+                <div class="mod-card">
+                    <img src="{{ url_for('static', filename='img/worlds.jpg') }}" alt="Worlds" class="mod-card-image">
+                    <div class="mod-card-content">
+                        <h3 class="mod-card-title">Worlds</h3>
+                        <p class="mod-card-description">Explore amazing pre-built worlds and adventure maps</p>
+                        <div style="margin-top: 16px;">
+                            <a href="/worlds" class="filter-btn">Browse Worlds</a>
+                        </div>
+                    </div>
+                </div>
+<!-- Gallery tile -->
+                <div class="mod-card">
+                    <img src="{{ url_for('static', filename='img/gallery.png') }}" alt="Worlds" class="mod-card-image">
+                    <div class="mod-card-content">
+                        <h3 class="mod-card-title">Gallery</h3>
+                        <p class="mod-card-description">Get to know a little more about the game</p>
+                        <div style="margin-top: 16px;">
+                            <a href="/gallery" class="filter-btn">Browse Gallery</a>
+                        </div>
+                    </div>
+                </div>
+<!-- Shaders -->
+                <div class="mod-card">
+                    <img src="{{ url_for('static', filename='img/shaders.png') }}" alt="Worlds" class="mod-card-image">
+                    <div class="mod-card-content">
+                        <h3 class="mod-card-title">Shaders</h3>
+                        <p class="mod-card-description">Give your game a facelift with shaders</p>
+                        <div style="margin-top: 16px;">
+                            <a href="/shaders" class="filter-btn">Browse Shaders</a>
+                        </div>
+                    </div>
+                </div>
+<!-- Modpacks -->
+                <div class="mod-card">
+                    <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Worlds" class="mod-card-image">
+                    <div class="mod-card-content">
+                        <h3 class="mod-card-title">Modpacks</h3>
+                        <p class="mod-card-description">Relive Minecraft in a new way</p>
+                        <div style="margin-top: 16px;">
+                            <a href="/modpacks" class="filter-btn">Browse Modpacks</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+
+    
+</html>

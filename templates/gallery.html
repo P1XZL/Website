@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <title>Gallery - Pyrite</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/opmaak.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+    <script src="{{ url_for('static', filename='js/navbar.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/gallery.js') }}" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            </div>
+            <div class="nav-links">
+                <div class="nav-tile"><a href="/">Home</a></div>
+                <div class="nav-tile"><a href="/mods">Mods</a></div>
+                <div class="nav-tile active"><a href="/gallery">Gallery</a></div>
+                <div class="nav-tile"><a href="/textures">Textures</a></div>
+                <div class="nav-tile"><a href="/worlds">Worlds</a></div>
+                <div class="nav-tile"><a href="/shaders">Shaders</a></div>
+                <div class="nav-tile"><a href="/modpacks">Modpacks</a></div>
+            </div>
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <div class="nav-tile"><a href="/">Home</a></div>
+            <div class="nav-tile"><a href="/mods">Mods</a></div>
+            <div class="nav-tile active"><a href="/gallery">Gallery</a></div>
+            <div class="nav-tile"><a href="/textures">Textures</a></div>
+            <div class="nav-tile"><a href="/worlds">Worlds</a></div>
+            <div class="nav-tile"><a href="/shaders">Shaders</a></div>
+            <div class="nav-tile"><a href="/modpacks">Modpacks</a></div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="section-header">
+            <h1 class="section-title">Gallery</h1>
+            <p class="section-subtitle">
+                Explore stunning Minecraft screenshots, builds, and creations from our community. 
+                Click on any image to view it in full size.
+            </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+            <h3 class="filter-title">Filter by Category</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="builds">Builds</button>
+                <button class="filter-btn" data-filter="landscapes">Landscapes</button>
+                <button class="filter-btn" data-filter="redstone">Redstone</button>
+                <button class="filter-btn" data-filter="pixel-art">Pixel Art</button>
+                <button class="filter-btn" data-filter="interiors">Interiors</button>
+            </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Build Images -->
+            <div class="gallery-item" data-category="builds">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Medieval Castle Build" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Medieval Castle</h3>
+                    <p>Epic medieval fortress with detailed interiors</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="landscapes">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Mountain Landscape" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Mountain Vista</h3>
+                    <p>Breathtaking mountain landscape with custom terrain</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="builds">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Modern City" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Modern Metropolis</h3>
+                    <p>Futuristic city with skyscrapers and neon lights</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="pixel-art">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Pixel Art Creation" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Pixel Art Masterpiece</h3>
+                    <p>Detailed pixel art recreation of famous artwork</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="redstone">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Redstone Contraption" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Redstone Computer</h3>
+                    <p>Fully functional calculator built with redstone</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="interiors">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Cozy Interior" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Cozy Library</h3>
+                    <p>Warm and inviting library with custom furniture</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="landscapes">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Ocean View" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Ocean Paradise</h3>
+                    <p>Tropical island with crystal clear waters</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="builds">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Fantasy Build" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Floating Islands</h3>
+                    <p>Magical floating islands connected by bridges</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="pixel-art">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Character Pixel Art" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Character Portrait</h3>
+                    <p>Detailed character pixel art with shading</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="redstone">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Redstone Farm" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Automated Farm</h3>
+                    <p>Fully automated crop farm with sorting system</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="interiors">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Kitchen Interior" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Modern Kitchen</h3>
+                    <p>Sleek modern kitchen with custom appliances</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="builds">
+                <img src="{{ url_for('static', filename='img/modpacks.png') }}" alt="Ancient Temple" loading="lazy">
+                <div class="gallery-overlay">
+                    <h3>Ancient Temple</h3>
+                    <p>Mysterious ancient temple with hidden chambers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <div class="lightbox-container">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#8249;</button>
+            <button class="lightbox-nav lightbox-next" id="lightbox-next">&#8250;</button>
+            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+            <div class="lightbox-info">
+                <h3 class="lightbox-title" id="lightbox-title"></h3>
+                <p class="lightbox-description" id="lightbox-description"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
